@@ -1,0 +1,66 @@
+{
+  "id": "TC-PRJ-005",
+  "name": "프로젝트 검색 기능 테스트",
+  "description": "프로젝트 목록에서 검색 기능이 올바르게 작동하는지 확인",
+  "feature": "projects",
+  "priority": "medium",
+  "tags": ["projects", "search", "filter"],
+
+  "preconditions": [
+    "사용자가 로그인된 상태",
+    "최소 2개 이상의 프로젝트가 존재"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/projects"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/projects",
+      "description": "프로젝트 목록 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "wait",
+      "type": "selector",
+      "selector": "table",
+      "description": "테이블이 로드될 때까지 대기"
+    },
+    {
+      "order": 3,
+      "action": "fill",
+      "selector": "textbox[placeholder*='프로젝트명으로 검색']",
+      "value": "te",
+      "description": "검색창에 'te' 입력"
+    },
+    {
+      "order": 4,
+      "action": "wait",
+      "type": "timeout",
+      "timeout": 1000,
+      "description": "검색 결과 반영 대기"
+    },
+    {
+      "order": 5,
+      "action": "screenshot",
+      "name": "project-search-result",
+      "description": "검색 결과 스크린샷"
+    },
+    {
+      "order": 6,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "table tbody tr",
+      "description": "검색 결과가 표시되는지 확인"
+    }
+  ],
+
+  "expectedResult": "프로젝트 검색 기능이 올바르게 작동하고 검색어에 맞는 결과가 표시됨",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

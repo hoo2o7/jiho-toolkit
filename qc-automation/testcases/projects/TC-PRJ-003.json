@@ -1,0 +1,65 @@
+{
+  "id": "TC-PRJ-003",
+  "name": "프로젝트 단계 필터 테스트",
+  "description": "프로젝트 목록에서 단계별 필터가 올바르게 작동하는지 확인",
+  "feature": "projects",
+  "priority": "medium",
+  "tags": ["projects", "filter", "dropdown"],
+
+  "preconditions": [
+    "사용자가 로그인된 상태",
+    "다양한 단계의 프로젝트가 존재"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/projects"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/projects",
+      "description": "프로젝트 목록 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "wait",
+      "type": "selector",
+      "selector": "table",
+      "description": "테이블이 로드될 때까지 대기"
+    },
+    {
+      "order": 3,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "combobox:has-text('전체 단계')",
+      "description": "단계 필터 드롭다운이 표시되는지 확인"
+    },
+    {
+      "order": 4,
+      "action": "click",
+      "selector": "combobox:has-text('전체 단계')",
+      "description": "단계 필터 드롭다운 클릭"
+    },
+    {
+      "order": 5,
+      "action": "wait",
+      "type": "selector",
+      "selector": "[role='listbox']",
+      "description": "드롭다운 옵션이 표시될 때까지 대기"
+    },
+    {
+      "order": 6,
+      "action": "screenshot",
+      "name": "stage-filter-dropdown",
+      "description": "단계 필터 드롭다운 스크린샷"
+    }
+  ],
+
+  "expectedResult": "단계 필터 드롭다운이 올바르게 열리고 필터 옵션이 표시됨",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

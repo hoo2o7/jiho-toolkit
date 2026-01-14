@@ -1,0 +1,73 @@
+{
+  "id": "TC-PRJ-006",
+  "name": "[US-005] 프로젝트 생성 필수 필드 검증 테스트",
+  "description": "프로젝트 생성 시 고객사 선택 및 프로젝트명이 필수인지 확인 (US-005)",
+  "feature": "projects",
+  "priority": "high",
+  "tags": ["projects", "create", "validation", "us-005"],
+  "userStory": "US-005",
+
+  "preconditions": [
+    "사용자가 로그인된 상태",
+    "최소 1개 이상의 고객사가 존재"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/projects"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/projects",
+      "description": "프로젝트 목록 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "click",
+      "selector": "button:has-text('새 프로젝트')",
+      "description": "새 프로젝트 버튼 클릭"
+    },
+    {
+      "order": 3,
+      "action": "wait",
+      "type": "selector",
+      "selector": "[role='dialog']",
+      "description": "모달이 열릴 때까지 대기"
+    },
+    {
+      "order": 4,
+      "action": "assert",
+      "type": "element_disabled",
+      "selector": "[role='dialog'] button:has-text('프로젝트 생성')",
+      "description": "프로젝트 생성 버튼이 비활성화되어 있는지 확인"
+    },
+    {
+      "order": 5,
+      "action": "fill",
+      "selector": "[role='dialog'] textbox[placeholder*='프로젝트명을 입력']",
+      "value": "테스트 프로젝트",
+      "description": "프로젝트명 입력"
+    },
+    {
+      "order": 6,
+      "action": "assert",
+      "type": "element_disabled",
+      "selector": "[role='dialog'] button:has-text('프로젝트 생성')",
+      "description": "고객사 선택 전 프로젝트 생성 버튼이 여전히 비활성화인지 확인"
+    },
+    {
+      "order": 7,
+      "action": "click",
+      "selector": "[role='dialog'] button:has-text('Close')",
+      "description": "모달 닫기"
+    }
+  ],
+
+  "expectedResult": "프로젝트명과 고객사 필수 필드가 비어있으면 프로젝트 생성 버튼이 비활성화됨",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

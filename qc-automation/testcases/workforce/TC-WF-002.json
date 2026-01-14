@@ -1,0 +1,67 @@
+{
+  "id": "TC-WF-002",
+  "name": "[US-019] 직원 관리 권한별 컬럼 노출 테스트",
+  "description": "역할에 따라 직원 테이블에서 다른 컬럼이 표시되는지 확인 (US-019)",
+  "feature": "workforce",
+  "priority": "high",
+  "tags": ["workforce", "permission", "column", "us-019"],
+  "userStory": "US-019",
+
+  "preconditions": [
+    "사용자가 C-level/GA 역할로 로그인된 상태"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/workforce/people"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/workforce/people",
+      "description": "직원 관리 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "wait",
+      "type": "selector",
+      "selector": "table",
+      "description": "테이블이 로드될 때까지 대기"
+    },
+    {
+      "order": 3,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "columnheader:has-text('레벨')",
+      "description": "C-level/GA 역할에서 레벨 컬럼이 표시되는지 확인"
+    },
+    {
+      "order": 4,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "columnheader:has-text('시간당 레벨비용')",
+      "description": "C-level/GA 역할에서 시간당 레벨비용 컬럼이 표시되는지 확인"
+    },
+    {
+      "order": 5,
+      "action": "assert",
+      "type": "text_contains",
+      "selector": "table tbody tr:first-child",
+      "expected": "₩",
+      "description": "레벨 비용이 원화 형식으로 표시되는지 확인"
+    },
+    {
+      "order": 6,
+      "action": "screenshot",
+      "name": "workforce-people-clevel",
+      "description": "C-level 역할 직원 목록 스크린샷"
+    }
+  ],
+
+  "expectedResult": "C-level/GA 역할에서 레벨 및 시간당 레벨비용 컬럼이 표시됨",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

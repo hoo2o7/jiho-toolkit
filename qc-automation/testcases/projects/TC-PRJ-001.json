@@ -1,0 +1,81 @@
+{
+  "id": "TC-PRJ-001",
+  "name": "프로젝트 목록 표시 테스트",
+  "description": "프로젝트 목록 페이지가 올바르게 로드되고 테이블이 표시되는지 확인",
+  "feature": "projects",
+  "priority": "high",
+  "tags": ["projects", "smoke", "list"],
+
+  "preconditions": [
+    "사용자가 로그인된 상태",
+    "최소 1개 이상의 프로젝트가 존재"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/projects"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/projects",
+      "description": "프로젝트 목록 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "wait",
+      "type": "selector",
+      "selector": "table",
+      "description": "테이블이 로드될 때까지 대기"
+    },
+    {
+      "order": 3,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "heading:has-text('프로젝트')",
+      "description": "프로젝트 제목이 표시되는지 확인"
+    },
+    {
+      "order": 4,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "columnheader:has-text('프로젝트')",
+      "description": "프로젝트 컬럼 헤더가 표시되는지 확인"
+    },
+    {
+      "order": 5,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "columnheader:has-text('Stage')",
+      "description": "Stage 컬럼 헤더가 표시되는지 확인"
+    },
+    {
+      "order": 6,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "columnheader:has-text('담당 PM')",
+      "description": "담당 PM 컬럼 헤더가 표시되는지 확인"
+    },
+    {
+      "order": 7,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "button:has-text('새 프로젝트')",
+      "description": "새 프로젝트 버튼이 표시되는지 확인"
+    },
+    {
+      "order": 8,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "textbox[placeholder*='프로젝트명으로 검색']",
+      "description": "검색 입력창이 표시되는지 확인"
+    }
+  ],
+
+  "expectedResult": "프로젝트 목록 페이지가 올바르게 로드되고 모든 UI 요소가 표시됨",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

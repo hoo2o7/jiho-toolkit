@@ -1,0 +1,84 @@
+{
+  "id": "TC-NAV-001",
+  "name": "사이드바 메뉴 네비게이션 테스트",
+  "description": "사이드바의 주요 메뉴 항목들이 올바르게 작동하고 해당 페이지로 이동하는지 확인",
+  "feature": "navigation",
+  "priority": "high",
+  "tags": ["navigation", "smoke", "sidebar"],
+
+  "preconditions": [
+    "사용자가 로그인된 상태",
+    "대시보드 페이지에서 시작"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/dashboard"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/dashboard",
+      "description": "대시보드 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "heading:has-text('Dashboard')",
+      "description": "대시보드 제목이 표시되는지 확인"
+    },
+    {
+      "order": 3,
+      "action": "click",
+      "selector": "link:has-text('프로젝트')",
+      "description": "프로젝트 메뉴 클릭"
+    },
+    {
+      "order": 4,
+      "action": "assert",
+      "type": "url_contains",
+      "expected": "/projects",
+      "description": "프로젝트 페이지로 이동 확인"
+    },
+    {
+      "order": 5,
+      "action": "click",
+      "selector": "button:has-text('Client')",
+      "description": "Client 메뉴 클릭"
+    },
+    {
+      "order": 6,
+      "action": "click",
+      "selector": "link:has-text('고객사 관리')",
+      "description": "고객사 관리 서브메뉴 클릭"
+    },
+    {
+      "order": 7,
+      "action": "assert",
+      "type": "url_contains",
+      "expected": "/clients",
+      "description": "고객사 관리 페이지로 이동 확인"
+    },
+    {
+      "order": 8,
+      "action": "click",
+      "selector": "link:has-text('설정')",
+      "description": "설정 메뉴 클릭"
+    },
+    {
+      "order": 9,
+      "action": "assert",
+      "type": "url_contains",
+      "expected": "/settings",
+      "description": "설정 페이지로 이동 확인"
+    }
+  ],
+
+  "expectedResult": "모든 사이드바 메뉴가 올바르게 작동하고 해당 페이지로 이동함",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

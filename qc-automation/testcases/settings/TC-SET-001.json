@@ -1,0 +1,58 @@
+{
+  "id": "TC-SET-001",
+  "name": "[US-027] 설정 페이지 접근 권한 테스트",
+  "description": "C-level/GA 역할만 설정 메뉴에 접근 가능한지 확인 (US-027)",
+  "feature": "settings",
+  "priority": "high",
+  "tags": ["settings", "permission", "us-027"],
+  "userStory": "US-027",
+
+  "preconditions": [
+    "사용자가 로그인된 상태"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/dashboard"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/dashboard",
+      "description": "대시보드 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "link:has-text('설정')",
+      "description": "설정 메뉴가 사이드바에 표시되는지 확인"
+    },
+    {
+      "order": 3,
+      "action": "click",
+      "selector": "link:has-text('설정')",
+      "description": "설정 메뉴 클릭"
+    },
+    {
+      "order": 4,
+      "action": "assert",
+      "type": "url_contains",
+      "expected": "/settings",
+      "description": "설정 페이지로 이동 확인"
+    },
+    {
+      "order": 5,
+      "action": "screenshot",
+      "name": "settings-page",
+      "description": "설정 페이지 스크린샷"
+    }
+  ],
+
+  "expectedResult": "C-level/GA 역할에서 설정 메뉴에 접근 가능함",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

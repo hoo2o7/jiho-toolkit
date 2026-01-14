@@ -1,0 +1,58 @@
+{
+  "id": "TC-ROLE-001",
+  "name": "Role Test 드롭다운 기능 테스트",
+  "description": "Role Test 버튼을 클릭하면 역할 선택 드롭다운이 표시되는지 확인",
+  "feature": "auth",
+  "priority": "medium",
+  "tags": ["auth", "role", "dropdown", "permission"],
+
+  "preconditions": [
+    "사용자가 로그인된 상태"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/dashboard"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/dashboard",
+      "description": "대시보드 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "button:has-text('Role Test')",
+      "description": "Role Test 버튼이 표시되는지 확인"
+    },
+    {
+      "order": 3,
+      "action": "click",
+      "selector": "button:has-text('Role Test')",
+      "description": "Role Test 버튼 클릭"
+    },
+    {
+      "order": 4,
+      "action": "wait",
+      "type": "selector",
+      "selector": "[role='menu'], [role='listbox']",
+      "timeout": 3000,
+      "description": "드롭다운 메뉴가 표시될 때까지 대기"
+    },
+    {
+      "order": 5,
+      "action": "screenshot",
+      "name": "role-test-dropdown",
+      "description": "Role Test 드롭다운 스크린샷"
+    }
+  ],
+
+  "expectedResult": "Role Test 버튼 클릭 시 역할 선택 드롭다운이 표시됨",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

@@ -1,0 +1,8 @@
+{
+  "projectName": "Litmers Admin v2",
+  "baseUrl": "https://eugene-eight.vercel.app",
+  "defaultTimeout": 30000,
+  "screenshotOnFailure": true,
+  "browser": "chromium",
+  "headless": false
+}

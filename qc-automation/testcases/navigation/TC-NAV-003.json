@@ -1,0 +1,91 @@
+{
+  "id": "TC-NAV-003",
+  "name": "Finance 서브메뉴 네비게이션 테스트",
+  "description": "Finance 메뉴의 모든 서브메뉴가 올바르게 작동하는지 확인",
+  "feature": "navigation",
+  "priority": "high",
+  "tags": ["navigation", "finance", "submenu"],
+
+  "preconditions": [
+    "사용자가 로그인된 상태"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/dashboard"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/dashboard",
+      "description": "대시보드 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "click",
+      "selector": "button:has-text('Finance')",
+      "description": "Finance 메뉴 클릭"
+    },
+    {
+      "order": 3,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "link:has-text('대시보드')",
+      "description": "Finance 대시보드 서브메뉴가 표시되는지 확인"
+    },
+    {
+      "order": 4,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "link:has-text('계약')",
+      "description": "계약 서브메뉴가 표시되는지 확인"
+    },
+    {
+      "order": 5,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "link:has-text('세금계산서')",
+      "description": "세금계산서 서브메뉴가 표시되는지 확인"
+    },
+    {
+      "order": 6,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "link:has-text('전자서명')",
+      "description": "전자서명 서브메뉴가 표시되는지 확인"
+    },
+    {
+      "order": 7,
+      "action": "click",
+      "selector": "link:has-text('계약')",
+      "description": "계약 클릭"
+    },
+    {
+      "order": 8,
+      "action": "assert",
+      "type": "url_contains",
+      "expected": "/finance/contracts",
+      "description": "계약 페이지로 이동 확인"
+    },
+    {
+      "order": 9,
+      "action": "click",
+      "selector": "link:has-text('세금계산서')",
+      "description": "세금계산서 클릭"
+    },
+    {
+      "order": 10,
+      "action": "assert",
+      "type": "url_contains",
+      "expected": "/finance/invoices",
+      "description": "세금계산서 페이지로 이동 확인"
+    }
+  ],
+
+  "expectedResult": "Finance의 모든 서브메뉴가 올바르게 작동하고 해당 페이지로 이동함",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

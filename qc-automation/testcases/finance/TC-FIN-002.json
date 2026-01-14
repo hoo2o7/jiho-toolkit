@@ -1,0 +1,51 @@
+{
+  "id": "TC-FIN-002",
+  "name": "[US-015] 세금계산서 목록 페이지 표시 테스트",
+  "description": "세금계산서 목록 페이지가 올바르게 로드되는지 확인 (US-015)",
+  "feature": "finance",
+  "priority": "high",
+  "tags": ["finance", "invoices", "list", "us-015"],
+  "userStory": "US-015",
+
+  "preconditions": [
+    "사용자가 로그인된 상태"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/finance/invoices"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/finance/invoices",
+      "description": "세금계산서 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "wait",
+      "type": "navigation",
+      "description": "페이지 로드 대기"
+    },
+    {
+      "order": 3,
+      "action": "assert",
+      "type": "url_contains",
+      "expected": "/finance/invoices",
+      "description": "세금계산서 페이지 URL 확인"
+    },
+    {
+      "order": 4,
+      "action": "screenshot",
+      "name": "finance-invoices-page",
+      "description": "세금계산서 페이지 스크린샷"
+    }
+  ],
+
+  "expectedResult": "세금계산서 목록 페이지가 올바르게 로드됨",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

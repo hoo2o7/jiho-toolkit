@@ -1,0 +1,81 @@
+{
+  "id": "TC-CLI-001",
+  "name": "고객사 목록 표시 테스트",
+  "description": "고객사 관리 페이지가 올바르게 로드되고 테이블이 표시되는지 확인",
+  "feature": "clients",
+  "priority": "high",
+  "tags": ["clients", "smoke", "list"],
+
+  "preconditions": [
+    "사용자가 로그인된 상태",
+    "최소 1개 이상의 고객사가 존재"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/clients"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/clients",
+      "description": "고객사 관리 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "wait",
+      "type": "selector",
+      "selector": "table",
+      "description": "테이블이 로드될 때까지 대기"
+    },
+    {
+      "order": 3,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "heading:has-text('고객사 관리')",
+      "description": "고객사 관리 제목이 표시되는지 확인"
+    },
+    {
+      "order": 4,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "columnheader:has-text('고객사명')",
+      "description": "고객사명 컬럼 헤더가 표시되는지 확인"
+    },
+    {
+      "order": 5,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "columnheader:has-text('유형')",
+      "description": "유형 컬럼 헤더가 표시되는지 확인"
+    },
+    {
+      "order": 6,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "columnheader:has-text('대표자')",
+      "description": "대표자 컬럼 헤더가 표시되는지 확인"
+    },
+    {
+      "order": 7,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "button:has-text('고객사 등록')",
+      "description": "고객사 등록 버튼이 표시되는지 확인"
+    },
+    {
+      "order": 8,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "textbox[placeholder*='고객사명 검색']",
+      "description": "검색 입력창이 표시되는지 확인"
+    }
+  ],
+
+  "expectedResult": "고객사 관리 페이지가 올바르게 로드되고 모든 UI 요소가 표시됨",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

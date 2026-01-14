@@ -1,0 +1,88 @@
+{
+  "id": "TC-WF-001",
+  "name": "직원 관리 목록 표시 테스트",
+  "description": "직원 관리 페이지가 올바르게 로드되고 직원 목록이 표시되는지 확인",
+  "feature": "workforce",
+  "priority": "high",
+  "tags": ["workforce", "smoke", "list", "people"],
+
+  "preconditions": [
+    "사용자가 로그인된 상태",
+    "최소 1명 이상의 직원이 존재"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/workforce/people"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/workforce/people",
+      "description": "직원 관리 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "wait",
+      "type": "selector",
+      "selector": "table",
+      "description": "테이블이 로드될 때까지 대기"
+    },
+    {
+      "order": 3,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "heading:has-text('직원 관리')",
+      "description": "직원 관리 제목이 표시되는지 확인"
+    },
+    {
+      "order": 4,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "columnheader:has-text('이름')",
+      "description": "이름 컬럼 헤더가 표시되는지 확인"
+    },
+    {
+      "order": 5,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "columnheader:has-text('역할')",
+      "description": "역할 컬럼 헤더가 표시되는지 확인"
+    },
+    {
+      "order": 6,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "columnheader:has-text('고용형태')",
+      "description": "고용형태 컬럼 헤더가 표시되는지 확인"
+    },
+    {
+      "order": 7,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "columnheader:has-text('레벨')",
+      "description": "레벨 컬럼 헤더가 표시되는지 확인"
+    },
+    {
+      "order": 8,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "button:has-text('직원 초대')",
+      "description": "직원 초대 버튼이 표시되는지 확인"
+    },
+    {
+      "order": 9,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "button:has-text('WorkOS 동기화')",
+      "description": "WorkOS 동기화 버튼이 표시되는지 확인"
+    }
+  ],
+
+  "expectedResult": "직원 관리 페이지가 올바르게 로드되고 모든 UI 요소가 표시됨",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

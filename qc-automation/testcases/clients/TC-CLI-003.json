@@ -1,0 +1,60 @@
+{
+  "id": "TC-CLI-003",
+  "name": "고객사 검색 기능 테스트",
+  "description": "고객사 목록에서 검색 기능이 올바르게 작동하는지 확인",
+  "feature": "clients",
+  "priority": "medium",
+  "tags": ["clients", "search", "filter"],
+
+  "preconditions": [
+    "사용자가 로그인된 상태",
+    "최소 2개 이상의 고객사가 존재"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/clients"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/clients",
+      "description": "고객사 관리 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "wait",
+      "type": "selector",
+      "selector": "table",
+      "description": "테이블이 로드될 때까지 대기"
+    },
+    {
+      "order": 3,
+      "action": "fill",
+      "selector": "textbox[placeholder*='고객사명 검색']",
+      "value": "test",
+      "description": "검색창에 'test' 입력"
+    },
+    {
+      "order": 4,
+      "action": "wait",
+      "type": "timeout",
+      "timeout": 1000,
+      "description": "검색 결과 반영 대기"
+    },
+    {
+      "order": 5,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "table tbody tr",
+      "description": "검색 결과가 표시되는지 확인"
+    }
+  ],
+
+  "expectedResult": "검색 기능이 올바르게 작동하고 검색어에 맞는 결과가 표시됨",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

@@ -1,0 +1,63 @@
+{
+  "id": "TC-NAV-004",
+  "name": "사이드바 토글 기능 테스트",
+  "description": "Toggle Sidebar 버튼을 클릭하면 사이드바가 접히거나 펼쳐지는지 확인",
+  "feature": "navigation",
+  "priority": "medium",
+  "tags": ["navigation", "sidebar", "toggle", "ui"],
+
+  "preconditions": [
+    "사용자가 로그인된 상태"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/dashboard"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/dashboard",
+      "description": "대시보드 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "button:has-text('Toggle Sidebar')",
+      "description": "Toggle Sidebar 버튼이 표시되는지 확인"
+    },
+    {
+      "order": 3,
+      "action": "screenshot",
+      "name": "sidebar-expanded",
+      "description": "사이드바 펼쳐진 상태 스크린샷"
+    },
+    {
+      "order": 4,
+      "action": "click",
+      "selector": "button:has-text('Toggle Sidebar')",
+      "description": "Toggle Sidebar 버튼 클릭"
+    },
+    {
+      "order": 5,
+      "action": "wait",
+      "type": "timeout",
+      "timeout": 500,
+      "description": "애니메이션 완료 대기"
+    },
+    {
+      "order": 6,
+      "action": "screenshot",
+      "name": "sidebar-collapsed",
+      "description": "사이드바 접힌 상태 스크린샷"
+    }
+  ],
+
+  "expectedResult": "Toggle Sidebar 버튼 클릭 시 사이드바가 토글됨",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

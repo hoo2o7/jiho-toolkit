@@ -1,0 +1,65 @@
+{
+  "id": "TC-CLI-006",
+  "name": "[US-004] 고객사 상세에서 프로젝트/재무 탐색 테스트",
+  "description": "고객사 상세 화면에서 연결된 프로젝트와 재무 정보를 탐색할 수 있는지 확인 (US-004)",
+  "feature": "clients",
+  "priority": "high",
+  "tags": ["clients", "detail", "navigation", "us-004"],
+  "userStory": "US-004",
+
+  "preconditions": [
+    "사용자가 로그인된 상태",
+    "프로젝트가 연결된 고객사가 존재"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/clients"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/clients",
+      "description": "고객사 목록 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "wait",
+      "type": "selector",
+      "selector": "table tbody tr",
+      "description": "테이블 로드 대기"
+    },
+    {
+      "order": 3,
+      "action": "click",
+      "selector": "table tbody tr:has-text('중복 테스트 회사') a",
+      "description": "프로젝트가 있는 고객사 클릭"
+    },
+    {
+      "order": 4,
+      "action": "wait",
+      "type": "navigation",
+      "description": "페이지 이동 대기"
+    },
+    {
+      "order": 5,
+      "action": "assert",
+      "type": "url_contains",
+      "expected": "/clients/",
+      "description": "고객사 상세 페이지로 이동 확인"
+    },
+    {
+      "order": 6,
+      "action": "screenshot",
+      "name": "client-detail-with-projects",
+      "description": "고객사 상세 페이지 스크린샷"
+    }
+  ],
+
+  "expectedResult": "고객사 상세에서 연결된 프로젝트 정보를 볼 수 있음",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

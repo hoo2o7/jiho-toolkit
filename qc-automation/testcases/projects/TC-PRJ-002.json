@@ -1,0 +1,93 @@
+{
+  "id": "TC-PRJ-002",
+  "name": "새 프로젝트 생성 모달 테스트",
+  "description": "새 프로젝트 생성 모달이 올바르게 열리고 필수 필드가 표시되는지 확인",
+  "feature": "projects",
+  "priority": "high",
+  "tags": ["projects", "create", "modal"],
+
+  "preconditions": [
+    "사용자가 로그인된 상태",
+    "프로젝트 목록 페이지에서 시작"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/projects"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/projects",
+      "description": "프로젝트 목록 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "click",
+      "selector": "button:has-text('새 프로젝트')",
+      "description": "새 프로젝트 버튼 클릭"
+    },
+    {
+      "order": 3,
+      "action": "wait",
+      "type": "selector",
+      "selector": "[role='dialog']",
+      "description": "모달이 열릴 때까지 대기"
+    },
+    {
+      "order": 4,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "[role='dialog'] heading:has-text('새 프로젝트 생성')",
+      "description": "모달 제목이 표시되는지 확인"
+    },
+    {
+      "order": 5,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "[role='dialog'] textbox[placeholder*='프로젝트명을 입력']",
+      "description": "프로젝트명 입력 필드가 표시되는지 확인"
+    },
+    {
+      "order": 6,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "[role='dialog'] :text('고객사 *')",
+      "description": "고객사 필수 필드 라벨이 표시되는지 확인"
+    },
+    {
+      "order": 7,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "[role='dialog'] button:has-text('프로젝트 생성')",
+      "description": "프로젝트 생성 버튼이 표시되는지 확인"
+    },
+    {
+      "order": 8,
+      "action": "assert",
+      "type": "element_visible",
+      "selector": "[role='dialog'] button:has-text('취소')",
+      "description": "취소 버튼이 표시되는지 확인"
+    },
+    {
+      "order": 9,
+      "action": "click",
+      "selector": "[role='dialog'] button:has-text('Close')",
+      "description": "모달 닫기"
+    },
+    {
+      "order": 10,
+      "action": "assert",
+      "type": "element_not_visible",
+      "selector": "[role='dialog']",
+      "description": "모달이 닫혔는지 확인"
+    }
+  ],
+
+  "expectedResult": "새 프로젝트 생성 모달이 올바르게 열리고 모든 필수 필드가 표시됨",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}

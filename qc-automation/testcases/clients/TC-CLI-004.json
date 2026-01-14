@@ -1,0 +1,64 @@
+{
+  "id": "TC-CLI-004",
+  "name": "고객사 상세 페이지 이동 테스트",
+  "description": "고객사 목록에서 고객사를 클릭하면 상세 페이지로 이동하는지 확인",
+  "feature": "clients",
+  "priority": "high",
+  "tags": ["clients", "detail", "navigation"],
+
+  "preconditions": [
+    "사용자가 로그인된 상태",
+    "최소 1개 이상의 고객사가 존재"
+  ],
+
+  "setup": {
+    "requiresAuth": true,
+    "startUrl": "/clients"
+  },
+
+  "steps": [
+    {
+      "order": 1,
+      "action": "navigate",
+      "target": "/clients",
+      "description": "고객사 목록 페이지로 이동"
+    },
+    {
+      "order": 2,
+      "action": "wait",
+      "type": "selector",
+      "selector": "table tbody tr",
+      "description": "고객사 행이 로드될 때까지 대기"
+    },
+    {
+      "order": 3,
+      "action": "click",
+      "selector": "table tbody tr:first-child a",
+      "description": "첫 번째 고객사 링크 클릭"
+    },
+    {
+      "order": 4,
+      "action": "wait",
+      "type": "navigation",
+      "description": "페이지 이동 대기"
+    },
+    {
+      "order": 5,
+      "action": "assert",
+      "type": "url_contains",
+      "expected": "/clients/",
+      "description": "고객사 상세 페이지로 이동 확인"
+    },
+    {
+      "order": 6,
+      "action": "screenshot",
+      "name": "client-detail-page",
+      "description": "고객사 상세 페이지 스크린샷"
+    }
+  ],
+
+  "expectedResult": "고객사 클릭 시 해당 고객사의 상세 페이지로 이동함",
+
+  "createdAt": "2026-01-13T00:00:00Z",
+  "updatedAt": "2026-01-13T00:00:00Z"
+}
